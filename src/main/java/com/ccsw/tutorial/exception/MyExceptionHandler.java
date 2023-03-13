@@ -26,12 +26,6 @@ public class MyExceptionHandler {
         return new ResponseEntity<>(errorThrown, errorThrown.getHttpStatus());
     }
     
-    @ExceptionHandler(LoanPeriodTooLongException.class)
-    public ResponseEntity<?> loanPeriodTooLongExceptionHandling(Exception exception, WebRequest request) {
-        Error errorThrown = new Error (HttpStatus.BAD_REQUEST, exception.getMessage());
-        return new ResponseEntity<>(errorThrown, errorThrown.getHttpStatus());
-    }
-    
     @ExceptionHandler(TooManyActiveLoansException.class)
     public ResponseEntity<?> tooManyActiveLoansExceptionHandling(Exception exception, WebRequest request) {
         Error errorThrown = new Error (HttpStatus.BAD_REQUEST, exception.getMessage());

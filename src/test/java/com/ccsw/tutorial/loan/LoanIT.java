@@ -27,8 +27,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.ccsw.tutorial.author.model.AuthorDto;
-import com.ccsw.tutorial.author.model.AuthorSearchDto;
 import com.ccsw.tutorial.client.model.ClientDto;
 import com.ccsw.tutorial.game.model.GameDto;
 import com.ccsw.tutorial.loan.model.LoanDto;
@@ -41,8 +39,6 @@ public class LoanIT {
     private static final String LOCALHOST = "http://localhost:";
     private static final String SERVICE_PATH = "/loan/";
 
-    private static final Long EXISTING_LOAN_ID = 1L;
-    private static final Long NOT_EXISTING_LOAN_ID = 0L;
     private static final Long DELETE_LOAN_ID = 7L;
     private static final Long FREE_GAME_ID = 3L;
     private static final Long LENDED_GAME_ID = 1L;
@@ -59,7 +55,6 @@ public class LoanIT {
     
     private static Date begin;
     private static Date endOk;
-    private static Date endNotOk;
     
 
     @LocalServerPort
@@ -85,7 +80,6 @@ public class LoanIT {
     static void setUp() throws ParseException {
         begin = new SimpleDateFormat("dd/MM/yyyy").parse("01/03/2023");
         endOk = new SimpleDateFormat("dd/MM/yyyy").parse("10/03/2023");
-        endNotOk = new SimpleDateFormat("dd/MM/yyyy").parse("31/03/2023");
     }
     
     @Test

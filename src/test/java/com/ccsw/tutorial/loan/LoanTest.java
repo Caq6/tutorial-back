@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -26,7 +25,6 @@ import com.ccsw.tutorial.client.ClientService;
 import com.ccsw.tutorial.client.model.Client;
 import com.ccsw.tutorial.client.model.ClientDto;
 import com.ccsw.tutorial.exception.GameNotAvailableException;
-import com.ccsw.tutorial.exception.LoanPeriodTooLongException;
 import com.ccsw.tutorial.exception.TooManyActiveLoansException;
 import com.ccsw.tutorial.game.GameService;
 import com.ccsw.tutorial.game.model.Game;
@@ -141,24 +139,6 @@ public class LoanTest {
         when(loanRepository.findByGameAndActiveLoans(game.getId(), begin, end)).thenReturn(gamesActiveLoans); 
         
         assertThrows(GameNotAvailableException.class,
-                ()->{
-                    loanService.save(loanToCreate);
-                    });
-    }
-    
-    @Test
-    public void saveLoanForMoreThan14DaysShouldError() throws ParseException {  
-        Date longerEnd = new SimpleDateFormat("dd/MM/yyyy").parse("31/03/2023");
-        
-        LoanDto loanToCreate = new LoanDto();
-        loanToCreate.setClient(mock(ClientDto.class));
-        loanToCreate.setGame(mock(GameDto.class));
-        loanToCreate.setBegin(begin);
-        loanToCreate.setEnd(longerEnd);
-        
-        verify(loanRepository, never()).save(any(Loan.class));
-        
-        assertThrows(LoanPeriodTooLongException.class,
                 ()->{
                     loanService.save(loanToCreate);
                     });

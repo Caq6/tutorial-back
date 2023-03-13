@@ -21,6 +21,7 @@ INSERT INTO CLIENT(id, name) VALUES (2, 'Chanel Terrero');
 INSERT INTO CLIENT(id, name) VALUES (3, 'Cornelia Jakobs');
 INSERT INTO CLIENT(id, name) VALUES (4, 'Salvador Sobral');
 INSERT INTO CLIENT(id, name) VALUES (5, 'Blas Canto');
+INSERT INTO CLIENT(id, name) VALUES (6, 'Claudia Pascoal');
 
 INSERT INTO LOAN(id, begin, end, client_id, game_id) VALUES (1, '2023-02-28', '2023-03-14', 1, 5);
 INSERT INTO LOAN(id, begin, end, client_id, game_id) VALUES (2, '2023-02-20', '2023-03-01', 1, 6);

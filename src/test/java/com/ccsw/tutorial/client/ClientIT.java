@@ -40,11 +40,12 @@ public class ClientIT {
     
     ParameterizedTypeReference<List<ClientDto>> responseType = new ParameterizedTypeReference<List<ClientDto>>(){};
 
-    public static final Long EXISTING_CLIENT_ID = 1L; 
+    public static final Long EXISTING_CLIENT_ID = 6L; 
     public static final String EXISTING_CLIENT_NAME = "Blanca Paloma Ramos";
     public static final String NEW_CLIENT_NAME = "Rosa Linn";
-    public static final Long NEW_CLIENT_ID = 6L;
+    public static final Long NEW_CLIENT_ID = 7L;
     public static final Long NOT_EXISTING_CLIENT_ID = 100L;
+    public static final int NUMBER_OF_CLIENTS = 6;
 
     
     @Test
@@ -52,7 +53,7 @@ public class ClientIT {
         ResponseEntity<List<ClientDto>> response = restTemplate.exchange(LOCALHOST + port + SERVICE_PATH, HttpMethod.GET, null, responseType);
         
         assertNotNull(response);
-        assertEquals(5, response.getBody().size()); 
+        assertEquals(NUMBER_OF_CLIENTS, response.getBody().size()); 
     }
     
     @Test
@@ -64,7 +65,7 @@ public class ClientIT {
         ResponseEntity<List<ClientDto>> response = restTemplate.exchange(LOCALHOST + port + SERVICE_PATH, HttpMethod.GET, null, responseType);
         
         assertNotNull(response);
-        assertEquals(6, response.getBody().size());
+        assertEquals(NUMBER_OF_CLIENTS + 1, response.getBody().size());
         
         ClientDto clientSearch = response.getBody().stream().filter(item -> item.getId().equals(NEW_CLIENT_ID)).findFirst().orElse(null);
         assertNotNull(clientSearch);
@@ -80,7 +81,7 @@ public class ClientIT {
         ResponseEntity<List<ClientDto>> response = restTemplate.exchange(LOCALHOST + port + SERVICE_PATH, HttpMethod.GET, null, responseType);
         
         assertNotNull(response);
-        assertEquals(5, response.getBody().size());
+        assertEquals(NUMBER_OF_CLIENTS, response.getBody().size());
         
         ClientDto clientSearch = response.getBody().stream().filter(item -> item.getId().equals(EXISTING_CLIENT_ID)).findFirst().orElse(null);
         assertNotNull(clientSearch);
@@ -107,6 +108,7 @@ public class ClientIT {
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
     }
     
+    
     @Test
     public void deleteExistingClientIdShouldDeleteClient() {
         ResponseEntity<?> responseDelete = restTemplate.exchange(LOCALHOST + port + SERVICE_PATH + EXISTING_CLIENT_ID, HttpMethod.DELETE, null, Void.class);
@@ -114,7 +116,7 @@ public class ClientIT {
 
         ResponseEntity<List<ClientDto>> response = restTemplate.exchange(LOCALHOST + port + SERVICE_PATH, HttpMethod.GET, null, responseType);
         assertNotNull(response);
-        assertEquals(4, response.getBody().size());
+        assertEquals(NUMBER_OF_CLIENTS - 1, response.getBody().size());
         
         ClientDto clientSearch = response.getBody().stream().filter(item -> item.getId().equals(EXISTING_CLIENT_ID)).findFirst().orElse(null);
         assertNull(clientSearch);

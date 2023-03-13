@@ -1,8 +1,5 @@
 package com.ccsw.tutorial.loan;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 
@@ -13,11 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
-import com.ccsw.tutorial.author.model.Author;
-import com.ccsw.tutorial.author.model.AuthorSearchDto;
 import com.ccsw.tutorial.client.ClientService;
 import com.ccsw.tutorial.exception.GameNotAvailableException;
-import com.ccsw.tutorial.exception.LoanPeriodTooLongException;
 import com.ccsw.tutorial.exception.TooManyActiveLoansException;
 import com.ccsw.tutorial.game.GameService;
 import com.ccsw.tutorial.loan.model.Loan;
