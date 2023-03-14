@@ -49,10 +49,7 @@ public class LoanServiceImpl implements LoanService {
      */
      @Override
      public Page<Loan> findPage(LoanSearchDto loanSearchDto, Long idGame, Long idClient, Date date) {
-         if(idGame == null && idClient == null && date == null) {
-             return this.loanRepository.findAll(loanSearchDto.getPageable());
-         }
-         
+                 
          return this.loanRepository.find(loanSearchDto.getPageable(), idGame, idClient, date);
      }
 

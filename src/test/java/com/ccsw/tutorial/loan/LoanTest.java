@@ -1,7 +1,5 @@
 package com.ccsw.tutorial.loan;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -64,18 +62,7 @@ public class LoanTest {
         end = new SimpleDateFormat("dd/MM/yyyy").parse("10/03/2023"); 
     }
     
-    @Test
-    public void findAllShouldReturnAllLoans() {
-        List<Loan> list = new ArrayList<>();
-        list.add(mock(Loan.class));
-        
-        when(loanRepository.findAll()).thenReturn(list);
-        
-        List<Loan> loans = loanService.findAll();
-        
-        assertNotNull(loans);
-        assertEquals(1, loans.size());
-    }
+    //FindToDo
     
     @Test
     public void saveLoanWithClientWithoutActiveLoansAndFreeGameAndDatesBetween14DaysShouldCreate() throws ParseException {

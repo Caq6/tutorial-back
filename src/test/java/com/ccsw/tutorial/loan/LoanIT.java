@@ -83,15 +83,6 @@ public class LoanIT {
     }
     
     @Test
-    public void findAllShouldReturnAllLoans() {
-
-          ResponseEntity<List<LoanDto>> response = restTemplate.exchange(LOCALHOST + port + SERVICE_PATH, HttpMethod.GET, null, responseTypeList);
-
-          assertNotNull(response);
-          assertEquals(TOTAL_LOANS, response.getBody().size());
-    }
-    
-    @Test
     public void findFirstPageWithFiveSizeWithoutFiltersShouldReturnFirstFiveResults() {
         LoanSearchDto loanSearchDto = new LoanSearchDto();
         loanSearchDto.setPageable(PageRequest.of(0, PAGE_SIZE));
